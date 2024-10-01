@@ -22,6 +22,7 @@ pub fn div_thousand_by(value: u32) -> Result<u32, Error> {
 }
 
 /// Divide 1000 by the value indicated
+/// => equivalent to the generated code for `div_thousand_by` with `#[profiling::function]`
 pub fn div_thousand_by_2(value: u32) -> Result<u32, Error> {
     {
         if value == 0 {
