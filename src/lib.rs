@@ -1,14 +1,33 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
+pub enum Error {
+    DivByZero,
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+/// Divide 100 by the value indicated
+/// => Reference which trigger the lint.
+pub fn div_hundred_by(value: u32) -> Result<u32, Error> {
+    if value == 0 {
+        return Err(Error::DivByZero);
     }
+    Ok(100 / value)
+}
+
+/// Divide 1000 by the value indicated
+pub fn div_thousand_by(value: u32) -> Result<u32, Error> {
+    if value == 0 {
+        return Err(Error::DivByZero);
+    }
+    Ok(1000 / value)
+}
+
+/// Divide 10_000 by the value indicated
+///
+/// # Errors
+/// Will return [`Error::DivByZero`] if `value` is equal to `zero`.
+///
+/// => variation with Errors doc, no lint to trigger.
+pub fn div_ten_thousand_by(value: u32) -> Result<u32, Error> {
+    if value == 0 {
+        return Err(Error::DivByZero);
+    }
+    Ok(10_000 / value)
 }
